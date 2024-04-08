@@ -29,6 +29,7 @@ print_line () {
     local trimmed_string="${string_with_padding:0:${window_with_buffer}}"
 
     printf '%s%s%s' "$3" "${trimmed_string}" "$5"
+    # To allow customizations
 }
 
 show_history_block() {
@@ -67,6 +68,7 @@ show_history_block() {
 
     # restore the cursor to the previous position
     echo -ne "\033[u"
+    customizations
 }
 
 bash_log_commands () {
@@ -76,6 +78,37 @@ bash_log_commands () {
     local this_command
     this_command=$(HISTTIMEFORMAT='' history 1 | sed -e "s/^[ ]*[0-9]*[ ]*//");
     echo "$this_command" >> "$HISTORY_FILE"
+}
+
+customizations () {
+   # Make it possible to use customizations without affecting simple way
+   # the defaults are to be used
+   # Overide font color
+   if [ ! -z ${HISTORY_FONT_COLOR} ]
+   then 
+      HISTORY_FONT_COLOR=${HISTORY_FONT_COLOR}	   
+   fi
+
+   #overide 
+   if [ ! -z ${WINDOW_WIDTH} ]
+   then
+      WINDOW_WIDTH=${WINDOW_WIDTH}
+   fi
+
+
+   # overide font color
+   if [ ! -z ${HISTORY_FILE} ]
+   then
+      HISTORY_FILE=${HISTORY_FILE}
+   fi
+
+   #overide number of lines displayes
+   if [ ! -z ${  NUM_HISTORY_LINES} ]
+   then
+      NUM_HISTORY_LINES=${NUM_HISTORY_LINES}
+   fi
+ 
+
 }
 
 # if history file does not exist, create it
