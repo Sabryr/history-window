@@ -82,7 +82,9 @@ bash_log_commands () {
 
 customizations () {
    # Make it possible to use customizations without affecting simple way
-   # the defaults are to be used
+   # the defaults are to be used. Also some check are needed to 
+   # and acceptable values should be defined
+
    # Overide font color
    if [ ! -z ${HISTORY_FONT_COLOR} ]
    then 
