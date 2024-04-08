@@ -103,7 +103,7 @@ customizations () {
    fi
 
    #overide number of lines displayes
-   if [ ! -z ${  NUM_HISTORY_LINES} ]
+   if [ ! -z ${NUM_HISTORY_LINES} ]
    then
       NUM_HISTORY_LINES=${NUM_HISTORY_LINES}
    fi
